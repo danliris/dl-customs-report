@@ -2,7 +2,7 @@ export default {
     endpoint: "auth",
     configureEndpoints: ["auth","customs-report","purchasing","garment-production","inventory","it-inventory"],
 
-    loginUrl: "authenticate",
+    loginUrl: "authenticate/AuthUI",
     profileUrl: "/me",
 
     authTokenType: "Bearer",
