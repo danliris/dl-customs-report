@@ -113,8 +113,52 @@ export class List {
           }
         }
         this.data = result.data;
+        this.handleBC261();
       });
   }
+
+  handleBC261() {
+  if (!Array.isArray(this.data)) return;
+
+  const map = {};
+
+  this.data.forEach(item => {
+    if (item.BCType !== "BC 261") return;
+
+    const key = `${item.BCType}|${item.BCNo}|${item.BCDate}`;
+
+    if (!map[key]) {
+      map[key] = {
+        ref: item,
+        bonNos: []
+      };
+    }
+
+    if (item.BonNo) {
+      map[key].bonNos.push(item.BonNo);
+    }
+  });
+
+  Object.values(map).forEach(g => {
+    g.ref.BonNo = g.bonNos.join("\n");
+  });
+  
+  const seen = new Set();
+
+  this.data.forEach(item => {
+    if (item.BCType !== "BC 261") return;
+
+    const key = `${item.BCType}|${item.BCNo}|${item.BCDate}`;
+
+    if (seen.has(key)) {
+      item._hideRow = true;
+    } else {
+      seen.add(key);
+      item._hideRow = false;
+    }
+  });
+}
+
 
   changePage(e) {
     var page = e.detail;
