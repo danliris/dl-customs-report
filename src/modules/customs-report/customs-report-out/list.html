@@ -1,5 +1,9 @@
 <template>
-
+<style>
+    .pre-line {
+    white-space: pre-line;
+    }
+</style>
     <h1 class="page-header">Laporan Pengeluaran Barang per Dokumen Pabean</h1>
     <form class="form-horizontal">
         <au-dropdown label="Tipe Beacukai" value.bind="type" items.bind="Types" options.bind="controlOptions">
@@ -62,15 +66,15 @@
                     <td class="text-left" if.bind="item.docspan" rowspan="${item.docspan}">${item.BCNo}</td>
                     <td class="text-right" if.bind="item.docspan" rowspan="${item.docspan}">${item.BCDate |
                         dateFormat:'D MMM YYYY'}</td>
-                    <td class="text-left">${item.BonNo}</td>
-                    <td class="text-left">${item.BonDate | dateFormat:'D MMM YYYY'}</td>
-                    <td class="text-left">${item.SupplierName}</td>
-                    <td class="text-left">${item.ItemCode}</td>
-                    <td class="text-left">${item.ItemName}</td>
-                    <td class="text-left">${item.UnitQtyName}</td>
-                    <td class="text-right">${item.Quantity}</td>
-                    <td class="text-right">${item.Nominal}</td>
-                    <td class="text-left">${item.CurrencyCode}</td>
+                    <td class="text-left pre-line" if.bind="!item._hideRow">${item.BonNo}</td>
+                    <td class="text-left" if.bind="!item._hideRow">${item.BonDate | dateFormat:'D MMM YYYY'}</td>
+                    <td class="text-left" if.bind="!item._hideRow">${item.SupplierName}</td>
+                    <td class="text-left" if.bind="!item._hideRow">${item.ItemCode}</td>
+                    <td class="text-left" if.bind="!item._hideRow">${item.ItemName}</td>
+                    <td class="text-left" if.bind="!item._hideRow">${item.UnitQtyName}</td>
+                    <td class="text-right" if.bind="!item._hideRow">${item.Quantity}</td>
+                    <td class="text-right" if.bind="!item._hideRow">${item.Nominal}</td>
+                    <td class="text-left" if.bind="!item._hideRow">${item.CurrencyCode}</td>
                 </tr>
             </tbody>
         </table>
