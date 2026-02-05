@@ -107,7 +107,6 @@ export class List {
           let bcdates = result.data.find(
             (o) => o.BCType + o.BCDate == b.BCType + b.BCDate
           );
-          //console.log(bcdates)
           if (bcdates) {
             bcdates.bcdatespan = rowDoc[b.BCType + b.BCDate];
           }
@@ -125,7 +124,7 @@ export class List {
   this.data.forEach(item => {
     if (item.BCType !== "BC 261") return;
 
-    const key = `${item.BCType}|${item.BCNo}|${item.BCDate}`;
+    const key = `${item.BCType}|${item.BCNo}|${item.BCDate}|${item.BonDate}|${item.SupplierName}|${item.ItemCode}|${item.ItemName}|${item.UnitQtyName}|${item.Quantity}|${item.Nominal}|${item.CurrencyCode}`;
 
     if (!map[key]) {
       map[key] = {
@@ -148,7 +147,7 @@ export class List {
   this.data.forEach(item => {
     if (item.BCType !== "BC 261") return;
 
-    const key = `${item.BCType}|${item.BCNo}|${item.BCDate}`;
+    const key = `${item.BCType}|${item.BCNo}|${item.BCDate}|${item.BonDate}|${item.SupplierName}|${item.ItemCode}|${item.ItemName}|${item.UnitQtyName}|${item.Quantity}|${item.Nominal}|${item.CurrencyCode}`;
 
     if (seen.has(key)) {
       item._hideRow = true;
