@@ -13,6 +13,17 @@ export class NavBar {
             this.authService.getMe()
                 .then((result) => {
                     this.me = result.data;
+                    var expiredDateTime = new Date(this.me.expiredDateTime);
+                    if (!expiredDateTime) {
+                        return;
+                    }else {
+                        var now = new Date();
+                        console.log(expiredDateTime);
+                        console.log(now);
+                        if (expiredDateTime < now) {
+                            this.logout();
+                        }
+                    }
                 })
         }
         else {
